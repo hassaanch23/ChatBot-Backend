@@ -8,6 +8,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 import json
+import os
 from uuid import uuid4
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_groq import ChatGroq
@@ -16,6 +17,7 @@ from fastapi.responses import FileResponse
 from fpdf import FPDF
 import tempfile
 from pydantic import BaseModel
+
 
 load_dotenv()
 
@@ -27,6 +29,7 @@ class State(TypedDict):
 
 search_tool = TavilySearchResults(
     max_results=4,
+    api_key=os.getenv("TAVILY_API_KEY")
 )
 
 tools = [search_tool]
@@ -35,7 +38,8 @@ tools = [search_tool]
 # os.environ["GROQ_API_KEY"] = "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"
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
-    temperature=0.5
+    temperature=0.5,
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 # llm = ChatOpenAI(model="gpt-4o")

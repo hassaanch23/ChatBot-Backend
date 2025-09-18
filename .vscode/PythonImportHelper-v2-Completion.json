@@ -1,0 +1,339 @@
+[
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "add_messages",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessageChunk",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "ToolMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "SystemMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "TavilySearchResults",
+        "importPath": "langchain_community.tools.tavily_search",
+        "description": "langchain_community.tools.tavily_search",
+        "isExtraImport": true,
+        "detail": "langchain_community.tools.tavily_search",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "StreamingResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "FileResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "uuid4",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "MemorySaver",
+        "importPath": "langgraph.checkpoint.memory",
+        "description": "langgraph.checkpoint.memory",
+        "isExtraImport": true,
+        "detail": "langgraph.checkpoint.memory",
+        "documentation": {}
+    },
+    {
+        "label": "ChatGroq",
+        "importPath": "langchain_groq",
+        "description": "langchain_groq",
+        "isExtraImport": true,
+        "detail": "langchain_groq",
+        "documentation": {}
+    },
+    {
+        "label": "FPDF",
+        "importPath": "fpdf",
+        "description": "fpdf",
+        "isExtraImport": true,
+        "detail": "fpdf",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "State",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class State(TypedDict):\n    messages: Annotated[list, add_messages]\nsearch_tool = TavilySearchResults(\n    max_results=4,\n    api_key=os.getenv(\"TAVILY_API_KEY\")\n)\ntools = [search_tool]\n# Set the API key as environment variable\n# os.environ[\"GROQ_API_KEY\"] = \"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\"\nllm = ChatGroq(",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "PDFRequest",
+        "kind": 6,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "class PDFRequest(BaseModel):\n    summary: str\n@app.post(\"/generate_pdf\")\nasync def generate_pdf(request: PDFRequest):\n    summary = request.summary\n    pdf = FPDF()\n    pdf.add_page()\n    pdf.set_auto_page_break(auto=True, margin=15)\n    pdf.set_font(\"Arial\", size=12)\n    # Clean text for line breaks",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "generate_summary_from_messages",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def generate_summary_from_messages(messages):\n    summary = {\n        \"project_name\": None,\n        \"platform\": None,\n        \"features\": [],\n        \"tech_stack\": [],\n        \"budget\": None,\n        \"timeline\": None,\n        \"notes\": []\n    }",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "is_vague",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def is_vague(text: str) -> bool:\n    text = text.lower()\n    return any(vague in text for vague in VAGUE_RESPONSES)\nasync def model(state: State):\n    result = await llm_with_tools.ainvoke(state[\"messages\"])\n    return {\n        \"messages\": [result], \n    }\nasync def tools_router(state: State):\n    last_message = state[\"messages\"][-1]",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "serialise_ai_message_chunk",
+        "kind": 2,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "def serialise_ai_message_chunk(chunk): \n    if(isinstance(chunk, AIMessageChunk)):\n        return chunk.content\n    else:\n        raise TypeError(\n            f\"Object of type {type(chunk).__name__} is not correctly formatted for serialisation\"\n        )\nasync def generate_chat_responses(message: str, checkpoint_id: Optional[str] = None):\n    is_new_conversation = checkpoint_id is None\n    if is_new_conversation:",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "memory",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "memory = MemorySaver()\nclass State(TypedDict):\n    messages: Annotated[list, add_messages]\nsearch_tool = TavilySearchResults(\n    max_results=4,\n    api_key=os.getenv(\"TAVILY_API_KEY\")\n)\ntools = [search_tool]\n# Set the API key as environment variable\n# os.environ[\"GROQ_API_KEY\"] = \"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\"",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "search_tool",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "search_tool = TavilySearchResults(\n    max_results=4,\n    api_key=os.getenv(\"TAVILY_API_KEY\")\n)\ntools = [search_tool]\n# Set the API key as environment variable\n# os.environ[\"GROQ_API_KEY\"] = \"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\"\nllm = ChatGroq(\n    model=\"meta-llama/llama-4-scout-17b-16e-instruct\",\n    temperature=0.5,",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "tools",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "tools = [search_tool]\n# Set the API key as environment variable\n# os.environ[\"GROQ_API_KEY\"] = \"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\"\nllm = ChatGroq(\n    model=\"meta-llama/llama-4-scout-17b-16e-instruct\",\n    temperature=0.5,\n    api_key=os.getenv(\"GROQ_API_KEY\")\n)\n# llm = ChatOpenAI(model=\"gpt-4o\")\nllm_with_tools = llm.bind_tools(tools=tools)",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "llm",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "llm = ChatGroq(\n    model=\"meta-llama/llama-4-scout-17b-16e-instruct\",\n    temperature=0.5,\n    api_key=os.getenv(\"GROQ_API_KEY\")\n)\n# llm = ChatOpenAI(model=\"gpt-4o\")\nllm_with_tools = llm.bind_tools(tools=tools)\ndef generate_summary_from_messages(messages):\n    summary = {\n        \"project_name\": None,",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "llm_with_tools",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "llm_with_tools = llm.bind_tools(tools=tools)\ndef generate_summary_from_messages(messages):\n    summary = {\n        \"project_name\": None,\n        \"platform\": None,\n        \"features\": [],\n        \"tech_stack\": [],\n        \"budget\": None,\n        \"timeline\": None,\n        \"notes\": []",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "VAGUE_RESPONSES",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "VAGUE_RESPONSES = [\"i don't know\", \"maybe\", \"anything\", \"not sure\", \"you decide\", \"idk\", \"whatever\"]\ndef is_vague(text: str) -> bool:\n    text = text.lower()\n    return any(vague in text for vague in VAGUE_RESPONSES)\nasync def model(state: State):\n    result = await llm_with_tools.ainvoke(state[\"messages\"])\n    return {\n        \"messages\": [result], \n    }\nasync def tools_router(state: State):",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "graph_builder",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "graph_builder = StateGraph(State)\ngraph_builder.add_node(\"model\", model)\ngraph_builder.add_node(\"tool_node\", tool_node)\ngraph_builder.set_entry_point(\"model\")\ngraph_builder.add_conditional_edges(\"model\", tools_router)\ngraph_builder.add_edge(\"tool_node\", \"model\")\ngraph = graph_builder.compile(checkpointer=memory)\napp = FastAPI()\n# Add CORS middleware with settings that match frontend requirements\napp.add_middleware(",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "graph",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "graph = graph_builder.compile(checkpointer=memory)\napp = FastAPI()\n# Add CORS middleware with settings that match frontend requirements\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  \n    allow_credentials=True,\n    allow_methods=[\"*\"],  \n    allow_headers=[\"*\"], \n    expose_headers=[\"Content-Type\"], ",
+        "detail": "server.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "server.app",
+        "description": "server.app",
+        "peekOfCode": "app = FastAPI()\n# Add CORS middleware with settings that match frontend requirements\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  \n    allow_credentials=True,\n    allow_methods=[\"*\"],  \n    allow_headers=[\"*\"], \n    expose_headers=[\"Content-Type\"], \n)",
+        "detail": "server.app",
+        "documentation": {}
+    }
+]
