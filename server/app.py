@@ -34,15 +34,12 @@ search_tool = TavilySearchResults(
 
 tools = [search_tool]
 
-# Set the API key as environment variable
-# os.environ["GROQ_API_KEY"] = "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"
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
     temperature=0.5,
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-# llm = ChatOpenAI(model="gpt-4o")
 
 llm_with_tools = llm.bind_tools(tools=tools)
 
