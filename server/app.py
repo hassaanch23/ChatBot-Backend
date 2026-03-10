@@ -240,72 +240,85 @@ async def generate_chat_responses(message: str, checkpoint_id: Optional[str] = N
             config=config
         )
 
-    async for event in events:
-        event_type = event["event"]
-        
-        if event_type == "on_chat_model_stream":
-            chunk_content = serialise_ai_message_chunk(event["data"]["chunk"])
-            # Escape single quotes and newlines for safe JSON parsing
-            safe_content = json.dumps(chunk_content)
-            yield f"data: {{\"type\": \"content\", \"content\": {safe_content}}}\n\n"
+    try:
+        async for event in events:
+            event_type = event["event"]
 
-            
-        elif event_type == "on_chat_model_end":
-            user_input = message.lower() if isinstance(message, str) else ""
-            # Check if there are tool calls for search
-            tool_calls = event["data"]["output"].tool_calls if hasattr(event["data"]["output"], "tool_calls") else []
-            search_calls = [call for call in tool_calls if call["name"] == "tavily_search_results_json"]
-            
-            if is_vague(user_input):
-                clarification = (
-                    "It seems your response was a bit unclear. "
-                    "Could you please provide more specific details?"
-                )
-                yield f"data: {{\"type\": \"clarification\", \"content\": \"{clarification}\"}}\n\n"
-                
-            # Ask for confirmation at the end if conversation seems complete
-            if any(x in user_input for x in ["that's all", "done", "complete", "finished"]):
-                summary = generate_summary_from_messages(memory.memory_store.get(checkpoint_id, []))
-                yield f"data: {{\"type\": \"summary\", \"content\": \"{summary}\"}}\n\n"
+            if event_type == "on_chat_model_stream":
+                chunk_content = serialise_ai_message_chunk(event["data"]["chunk"])
+                # Escape single quotes and newlines for safe JSON parsing
+                safe_content = json.dumps(chunk_content)
+                yield f"data: {{\"type\": \"content\", \"content\": {safe_content}}}\n\n"
 
-                confirmation = (
-                    "Does this summary look accurate to you? "
-                    "Would you like to proceed with development or make any changes?"
-                )
-                yield f"data: {{\"type\": \"confirmation\", \"content\": \"{confirmation}\"}}\n\n"
-            
-            if search_calls:
-                # Signal that a search is starting
-                search_query = search_calls[0]["args"].get("query", "")
-                # Escape quotes and special characters
-                safe_query = json.dumps(search_query)
-                yield f"data: {{\"type\": \"search_start\", \"query\": {safe_query}}}\n\n"
+            elif event_type == "on_chat_model_end":
+                user_input = message.lower() if isinstance(message, str) else ""
+                # Check if there are tool calls for search
+                tool_calls = event["data"]["output"].tool_calls if hasattr(event["data"]["output"], "tool_calls") else []
+                search_calls = [call for call in tool_calls if call["name"] == "tavily_search_results_json"]
 
-                
-        elif event_type == "on_tool_end" and event["name"] == "tavily_search_results_json":
-            # Search completed - send results or error
-            output = event["data"]["output"]
-            
-            # Check if output is a list 
-            if isinstance(output, list):
-                # Extract URLs from list of search results
-                urls = []
-                for item in output:
-                    if isinstance(item, dict) and "url" in item:
-                        urls.append(item["url"])
-                
-                # Convert URLs to JSON and yield them
-                urls_json = json.dumps(urls)
-                yield f"data: {{\"type\": \"search_results\", \"urls\": {urls_json}}}\n\n"
-    
-    # Send an end event
-    yield f"data: {{\"type\": \"end\"}}\n\n"
+                if is_vague(user_input):
+                    clarification = (
+                        "It seems your response was a bit unclear. "
+                        "Could you please provide more specific details?"
+                    )
+                    yield f"data: {{\"type\": \"clarification\", \"content\": {json.dumps(clarification)}}}\n\n"
+
+                # Ask for confirmation at the end if conversation seems complete
+                if any(x in user_input for x in ["that's all", "done", "complete", "finished"]):
+                    try:
+                        active_id = new_checkpoint_id if is_new_conversation else checkpoint_id
+                        stored = memory.memory_store.get(active_id, [])
+                        summary = generate_summary_from_messages(stored)
+                        yield f"data: {{\"type\": \"summary\", \"content\": {json.dumps(summary)}}}\n\n"
+                    except Exception:
+                        summary = "Summary could not be generated."
+                        yield f"data: {{\"type\": \"summary\", \"content\": {json.dumps(summary)}}}\n\n"
+
+                    confirmation = (
+                        "Does this summary look accurate to you? "
+                        "Would you like to proceed with development or make any changes?"
+                    )
+                    yield f"data: {{\"type\": \"confirmation\", \"content\": {json.dumps(confirmation)}}}\n\n"
+
+                if search_calls:
+                    # Signal that a search is starting
+                    search_query = search_calls[0]["args"].get("query", "")
+                    # Escape quotes and special characters
+                    safe_query = json.dumps(search_query)
+                    yield f"data: {{\"type\": \"search_start\", \"query\": {safe_query}}}\n\n"
+
+            elif event_type == "on_tool_end" and event["name"] == "tavily_search_results_json":
+                # Search completed - send results or error
+                output = event["data"]["output"]
+
+                # Check if output is a list
+                if isinstance(output, list):
+                    # Extract URLs from list of search results
+                    urls = []
+                    for item in output:
+                        if isinstance(item, dict) and "url" in item:
+                            urls.append(item["url"])
+
+                    # Convert URLs to JSON and yield them
+                    urls_json = json.dumps(urls)
+                    yield f"data: {{\"type\": \"search_results\", \"urls\": {urls_json}}}\n\n"
+
+        # Send an end event
+        yield f"data: {{\"type\": \"end\"}}\n\n"
+    except Exception as e:
+        yield f"data: {{\"type\": \"error\", \"error\": {json.dumps(str(e))}}}\n\n"
+        yield f"data: {{\"type\": \"end\"}}\n\n"
 
 @app.get("/chat_stream/{message}")
 async def chat_stream(message: str, checkpoint_id: Optional[str] = Query(None)):
     return StreamingResponse(
-        generate_chat_responses(message, checkpoint_id), 
-        media_type="text/event-stream"
+        generate_chat_responses(message, checkpoint_id),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache, no-transform",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",  # Disable nginx buffering
+        },
     )
     
 class PDFRequest(BaseModel):
