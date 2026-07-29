@@ -35,7 +35,7 @@ search_tool = TavilySearchResults(
 tools = [search_tool]
 
 llm = ChatGroq(
-    model="meta-llama/llama-4-scout-17b-16e-instruct",
+    model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
     temperature=0.5,
     api_key=os.getenv("GROQ_API_KEY")
 )
